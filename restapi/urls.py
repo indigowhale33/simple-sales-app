@@ -7,14 +7,6 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 
-#@api_view(['GET'])
-#def api_root(request, format=None):
-#    return Response({
-#        'customer-list': reverse('customer-list', request=request, format=format)
-#        'customer-detail': reverse('customer-detail', request=request, format=format)
- #       'product': reverse('product-list', request=request, format=format)
-#        'product-detail': reverse('product-detail', request=request, format=format)
-  #  })
 
 customer_list = CustomerViewSet.as_view({
     'get': 'list',
@@ -55,12 +47,6 @@ cart_detail = CartViewSet.as_view({
 })
 
 
-# Wire up our API using automatic URL routing.
-# Additionally, we include login URLs for the browsable API.
-#urlpatterns = [
-#    url(r'^customer/', views.customer_detail.as_view(), name='customer-detail'),
-#    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
-#]
 
 urlpatterns = format_suffix_patterns([
     url(r'^$', views.api_root),

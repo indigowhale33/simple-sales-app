@@ -1,5 +1,7 @@
 from django.db import models
 
+#model schema for Customer, Product, and Cart
+
 
 class Customer(models.Model):
     CustomerID = models.CharField(max_length=12, unique=True)
@@ -8,10 +10,6 @@ class Customer(models.Model):
     
     def __str__(self):
         return '%s (%s %s)' % (self.CustomerID, self.firstname, self.lastInitial)    
-#class Cart(models.Model):
-#    status = models.CharField(max_length=255, default='')
-#    user = models.ForeignKey(Customer, related_name="cart", on_delete=models.CASCADE)
-
 
 
 class Product(models.Model):
@@ -20,9 +18,7 @@ class Product(models.Model):
     original_price = models.DecimalField(max_digits=10, decimal_places=2)
     our_price = models.DecimalField(max_digits=10, decimal_places=2)
     image_url = models.TextField()
-####
-#    cart = models.ForeignKey(Cart, related_name='products', null=True,on_delete=models.CASCADE)
-###
+
     def __unicode__(self):
         return '%s' % (self.product_name)
 
@@ -32,7 +28,6 @@ class Product(models.Model):
 class Cart(models.Model):
     status = models.CharField(max_length=255)
     user = models.ForeignKey(Customer, related_name="cart", on_delete=models.CASCADE, blank=False)
-    #items = models.OneToOneField(Product)
     items = models.ForeignKey(Product, default=None, unique=True)
     
 
